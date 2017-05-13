@@ -9,36 +9,46 @@ import javax.swing.JOptionPane;
 public class PasswordStrTester {
 	
 	// Creating a charValue array to set a value for each Character in the String
-	int[] charValue;
-
+	// Creating an int equal to the Total of the charValue values
+	static int[] charValue;
+	static int totalVal = 0;
+	
+	public static void calcTotalBaseValue() {
+		
+		for(int i = 0; i < charValue.length; i++) {
+			totalVal += charValue[i];
+		}
+	}
+	
 	// Created to set the base value of each Character in the String
-	public void setValue(char val) {
+	public static void setPlusValue(String password) {
 		
 		// Setting the base value of the Characters below:
-		// Lowercase Letters = 1
-		// Uppercase Letters = 2
-		// Digits = 1
-		// Spaces Characters = 2
-		// Special Characters = 2
-		for(int i = 0; i > charValue.length; i++) {
-			if(Character.isLetter(val) && Character.isLowerCase(val)) {
-				charValue[i] = 1;
-			}else if(Character.isLetter(val) && Character.isUpperCase(val)) {
-				charValue[i] = 2;
-			}else if(Character.isDigit(val)) {
-				charValue[i] = 1;
-			}else if(Character.isSpaceChar(val)) {
-				charValue[i] = 2;
+		// flatVal = 1
+		// Lowercase Letters = (length - flatVal)*2
+		// Uppercase Letters = (length - flatVal)*2
+		// Digits = (flatVal*4)
+		// Special Characters = (flatVal*6)
+		int flatVal = 1;
+		
+		for(int i = 0; i < charValue.length; i++) {
+			if(Character.isLetter(password.charAt(i)) && Character.isLowerCase(password.charAt(i))) {
+				charValue[i] = ((password.length() - flatVal)*2);
+				System.out.println("Character = " + password.charAt(i));
+				System.out.println("Value of the lowercase letters: " + charValue[i]);
+			}else if(Character.isLetter(password.charAt(i)) && Character.isUpperCase(password.charAt(i))) {
+				charValue[i] = ((password.length() - flatVal)*2);
+				System.out.println("Character = " + password.charAt(i));
+				System.out.println("Value of the lowercase letters: " + charValue[i]);
+			}else if(Character.isDigit(password.charAt(i))) {
+				charValue[i] = (flatVal*4);
 			}else{
-				charValue[i] = 2;
+				charValue[i] = (flatVal*6);
 			}
 		}
 		
 	}
 	
-	/**
-	 * 
-	 */
 	public static void main(String[] args) {
 		
 		// Initializing the int to record the length of the Password String
@@ -48,10 +58,11 @@ public class PasswordStrTester {
 		String password = JOptionPane.showInputDialog(null, "Enter the password you would like to test:", JOptionPane.QUESTION_MESSAGE);
 		
 		stringLen = password.length();
+		charValue = new int[stringLen];
 		
-		
-		
-		
+		setPlusValue(password);
+		calcTotalBaseValue();
+		System.out.println(totalVal);
 	}
 
 }
