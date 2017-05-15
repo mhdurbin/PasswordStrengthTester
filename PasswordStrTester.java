@@ -20,8 +20,8 @@ public class PasswordStrTester {
 		}
 	}
 	
-	// Created to set the base value of each Character in the String
-	public static void setPlusValue(String password) {
+	// Created to set the Positive value of each Character in the String
+	public static void setPosValue(String password) {
 		
 		// Setting the base value of the Characters below:
 		// flatVal = 1
@@ -60,7 +60,7 @@ public class PasswordStrTester {
 		stringLen = password.length();
 		charValue = new int[stringLen];
 		
-		setPlusValue(password);
+		setPosValue(password);
 		calcTotalBaseValue();
 		System.out.println(totalVal);
 	}
