@@ -12,6 +12,7 @@ public class PasswordStrTester {
 	// Creating an int equal to the Total of the charValue values
 	static int[] charValue;
 	static int totalVal = 0;
+	static int occurNum[] = new int[4];
 	
 	public static void calcTotalBaseValue() {
 		
@@ -24,28 +25,45 @@ public class PasswordStrTester {
 	public static void setPosValue(String password) {
 		
 		// Setting the base value of the Characters below:
-		// flatVal = 1
-		// Lowercase Letters = (length - flatVal)*2
-		// Uppercase Letters = (length - flatVal)*2
-		// Digits = (flatVal*4)
-		// Special Characters = (flatVal*6)
-		int flatVal = 1;
+		// Lowercase Letters = (length - occurNum[0])*2
+		// Uppercase Letters = (length - occurNum[1])*2
+		// Digits = (occurNum[2]*4)
+		// Special Characters = (occurNum[3]*6)
+		// int occurNum[] = new int[4];
 		
 		for(int i = 0; i < charValue.length; i++) {
 			if(Character.isLetter(password.charAt(i)) && Character.isLowerCase(password.charAt(i))) {
-				charValue[i] = ((password.length() - flatVal)*2);
+				occurNum[0] += 1;
+			}else if(Character.isLetter(password.charAt(i)) && Character.isUpperCase(password.charAt(i))) {
+				occurNum[1] += 1;
+			}else if(Character.isDigit(password.charAt(i))) {
+				occurNum[2] += 1;
+			}else{
+				occurNum[3] += 1;
+			}
+		}
+		
+		
+		for(int i = 0; i < charValue.length; i++) {
+			if(Character.isLetter(password.charAt(i)) && Character.isLowerCase(password.charAt(i))) {
+				charValue[i] = ((password.length() - occurNum[0])*2);
 				System.out.println("Character = " + password.charAt(i));
 				System.out.println("Value of the lowercase letters: " + charValue[i]);
 			}else if(Character.isLetter(password.charAt(i)) && Character.isUpperCase(password.charAt(i))) {
-				charValue[i] = ((password.length() - flatVal)*2);
+				charValue[i] = ((password.length() - occurNum[1])*2);
 				System.out.println("Character = " + password.charAt(i));
-				System.out.println("Value of the lowercase letters: " + charValue[i]);
+				System.out.println("Value of the uppercase letters: " + charValue[i]);
 			}else if(Character.isDigit(password.charAt(i))) {
-				charValue[i] = (flatVal*4);
+				charValue[i] = (occurNum[2]*4);
+				System.out.println("Character = " + password.charAt(i));
+				System.out.println("Value of the digits: " + charValue[i]);
 			}else{
-				charValue[i] = (flatVal*6);
+				charValue[i] = (occurNum[3]*6);
+				System.out.println("Character = " + password.charAt(i));
+				System.out.println("Value of the special characters: " + charValue[i]);
 			}
 		}
+		
 		
 	}
 	
