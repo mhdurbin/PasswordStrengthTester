@@ -137,6 +137,11 @@ public class PasswordStrTester {
 		
 		String password = JOptionPane.showInputDialog(null, "Enter the password you would like to test:", JOptionPane.QUESTION_MESSAGE);
 		
+		if(password == null) {
+			System.out.println("The program has been cancelled.");
+			System.exit(0);
+		}
+		
 		stringLen = password.length();
 		charValue = new int[stringLen];
 		negCharValue = new int[stringLen];
