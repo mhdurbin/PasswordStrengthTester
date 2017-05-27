@@ -10,26 +10,88 @@ public class PasswordStrTester {
 	
 	// Creating a charValue array to set a value for each Character in the String
 	// Creating an int equal to the Total of the charValue values
+	// Creating an occurrence array (occurNum) to determine how many of one type of character is being used
+	// Creating a negative occurrence array (negOccurNum) to determine the number of occurrences for the Negative values
+	// because the Uppercase and Lowercase values are not calculated separately for the Negative values
 	static int[] charValue;
+	static int[] negCharValue;
 	static int totalVal = 0;
 	static int occurNum[] = new int[4];
+	static int negOccurNum[] = new int[3];
 	
-	public static void calcTotalBaseValue() {
+	// Calculates the total value of both the Positive and Negative numbers
+	public static void calcTotalValue() {
+		
+		int posVal = calcPosVals();
+		int negVal = calcNegVals();
+		
+		totalVal = posVal + negVal;
+	}
+	
+	// Calculates the total Positive Values
+	public static int calcPosVals() {
+		
+		int totalPosVal = 0;
 		
 		for(int i = 0; i < charValue.length; i++) {
-			totalVal += charValue[i];
+			totalPosVal += charValue[i];
+		}
+		System.out.println();
+		System.out.println("Total Positive Value: " + totalPosVal);
+		
+		return totalPosVal;
+	}
+	
+	//Calculates the total negative Values
+	public static int calcNegVals() {
+		
+		int totalNegVal = 0;
+		
+		for(int i = 0; i < charValue.length; i++) {
+			totalNegVal += negCharValue[i];
+		}
+		System.out.println();
+		System.out.println("Total Negative Value: " + totalNegVal);
+		
+		return totalNegVal;
+	}
+	
+	// Created to set the Negative value of each Character in the String
+	public static void setNegValue(String password) {
+		
+		for(int i = 0; i < charValue.length; i++) {
+			if(Character.isLetter(password.charAt(i))) {
+				negOccurNum[0] += 1;
+			}else if(Character.isDigit(password.charAt(i))) {
+				negOccurNum[1] += 1;
+			}else{
+				negOccurNum[2] += 1;
+			}
+		}
+		
+		for(int i = 0; i < negCharValue.length; i++) {
+			if(Character.isLetter(password.charAt(i))) {
+				negCharValue[i] = -negOccurNum[0];
+				System.out.println("Character = " + password.charAt(i));
+				System.out.println("Value of the letters: " + negCharValue[i]);
+			}else if(Character.isDigit(password.charAt(i))) {
+				negCharValue[i] = -negOccurNum[1];
+				System.out.println("Character = " + password.charAt(i));
+				System.out.println("Value of the digits: " + negCharValue[i]);
+			}else{
+				System.out.println("This was a special character or more complex situation than just Letters or Number");
+			}
 		}
 	}
 	
 	// Created to set the Positive value of each Character in the String
 	public static void setPosValue(String password) {
 		
-		// Setting the base value of the Characters below:
+		// Setting the base positive value of the Characters below:
 		// Lowercase Letters = (length - occurNum[0])*2
 		// Uppercase Letters = (length - occurNum[1])*2
 		// Digits = (occurNum[2]*4)
 		// Special Characters = (occurNum[3]*6)
-		// int occurNum[] = new int[4];
 		
 		for(int i = 0; i < charValue.length; i++) {
 			if(Character.isLetter(password.charAt(i)) && Character.isLowerCase(password.charAt(i))) {
@@ -77,9 +139,12 @@ public class PasswordStrTester {
 		
 		stringLen = password.length();
 		charValue = new int[stringLen];
+		negCharValue = new int[stringLen];
 		
 		setPosValue(password);
-		calcTotalBaseValue();
+		setNegValue(password);
+		calcTotalValue();
+		System.out.println();
 		System.out.println(totalVal);
 	}
 
