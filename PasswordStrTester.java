@@ -80,6 +80,13 @@ public class PasswordStrTester {
 				System.out.println("Value of the digits: " + negCharValue[i]);
 			}else{
 				System.out.println("This was a special character or more complex situation than just Letters or Number");
+				//Create a method for repeat characters
+				//Create a method for Consecutive Uppercase Letters
+				//Create a method for Consecutive Lowercase Letters
+				//Create a method for Consecutive Numbers
+				//Create a method for Sequential Letters
+				//Create a method for Sequential Numbers
+				//Create a method for Sequential Special Characters
 			}
 		}
 	}
@@ -151,6 +158,14 @@ public class PasswordStrTester {
 		calcTotalValue();
 		System.out.println();
 		System.out.println(totalVal);
+		
+		if(totalVal > 100) {
+			JOptionPane.showMessageDialog(null,"You have a strong password.");
+		}else {
+			JOptionPane.showMessageDialog(null,"Your password needs some help. Below are some helpful tips for creating a strong password:\n" 
+					+ "The longer the password, the stronger the password.\n"
+					+ "Try to include Uppercase letters, Lowercase letters, Numbers, and Special Characters in your password.\n");
+		}
 	}
 
 }
