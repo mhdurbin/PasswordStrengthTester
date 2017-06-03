@@ -18,6 +18,11 @@ public class PasswordStrTester {
 	static int totalVal = 0;
 	static int occurNum[] = new int[4];
 	static int negOccurNum[] = new int[3];
+	static int numOfRepeatCharacters = 0;
+	
+	public static void findRepeatCharacters(String password) {
+		
+	}
 	
 	// Calculates the total value of both the Positive and Negative numbers
 	public static void calcTotalValue() {
