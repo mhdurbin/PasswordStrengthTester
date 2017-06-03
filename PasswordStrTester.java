@@ -21,7 +21,14 @@ public class PasswordStrTester {
 	static int numOfRepeatCharacters = 0;
 	
 	public static void findRepeatCharacters(String password) {
-		
+		for(int i = 0; i < password.length(); i++) {
+			for(int j = i+1; j < password.length(); j++) {
+				if(password.charAt(i) == password.charAt(j)) {
+					numOfRepeatCharacters += 1;
+				}
+			}
+		}
+		System.out.println("Number of repeat Characters: " + numOfRepeatCharacters);
 	}
 	
 	// Calculates the total value of both the Positive and Negative numbers
@@ -85,6 +92,7 @@ public class PasswordStrTester {
 				System.out.println("Value of the digits: " + negCharValue[i]);
 			}else{
 				System.out.println("This was a special character or more complex situation than just Letters or Number");
+				findRepeatCharacters(password);
 				//Create a method for repeat characters
 				//Create a method for Consecutive Uppercase Letters
 				//Create a method for Consecutive Lowercase Letters
