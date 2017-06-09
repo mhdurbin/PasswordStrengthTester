@@ -19,6 +19,7 @@ public class PasswordStrTester {
 	static int occurNum[] = new int[4];
 	static int negOccurNum[] = new int[3];
 	static int numOfRepeatCharacters = 0;
+	static int negValOfRepeatChars = 0;
 	
 	public static void findRepeatCharacters(String password) {
 		for(int i = 0; i < password.length(); i++) {
@@ -28,6 +29,8 @@ public class PasswordStrTester {
 				}
 			}
 		}
+		negValOfRepeatChars = -numOfRepeatCharacters*2;
+		System.out.println("Negative value of repeat characters: " + negValOfRepeatChars);
 		System.out.println("Number of repeat Characters: " + numOfRepeatCharacters);
 	}
 	
@@ -62,6 +65,8 @@ public class PasswordStrTester {
 		for(int i = 0; i < charValue.length; i++) {
 			totalNegVal += negCharValue[i];
 		}
+		
+		totalNegVal += negValOfRepeatChars;
 		System.out.println();
 		System.out.println("Total Negative Value: " + totalNegVal);
 		
@@ -82,6 +87,9 @@ public class PasswordStrTester {
 		}
 		
 		for(int i = 0; i < negCharValue.length; i++) {
+			//Create a method for repeat characters
+			findRepeatCharacters(password);
+			
 			if(Character.isLetter(password.charAt(i))) {
 				negCharValue[i] = -negOccurNum[0];
 				System.out.println("Character = " + password.charAt(i));
@@ -92,8 +100,6 @@ public class PasswordStrTester {
 				System.out.println("Value of the digits: " + negCharValue[i]);
 			}else{
 				System.out.println("This was a special character or more complex situation than just Letters or Number");
-				findRepeatCharacters(password);
-				//Create a method for repeat characters
 				//Create a method for Consecutive Uppercase Letters
 				//Create a method for Consecutive Lowercase Letters
 				//Create a method for Consecutive Numbers
