@@ -23,6 +23,7 @@ public class PasswordStrTester {
 	static int negOccurNum[] = new int[2];
 	static int negValOfRepeatChars = 0;
 	static int negValOfConsUpperLetters = 0;
+	static int stringLen = 0;
 	
 	// Calculates the number of Consecutive Uppercase Letters - There is a flaw in the logic, which is throwing off the count. Need to look into this more.
 //	public static void calcConsUpperLetters(String password) {
@@ -79,7 +80,7 @@ public class PasswordStrTester {
 		}
 
 		// Sets the Negative Value of the total number of repeat characters
-		negValOfRepeatChars = -numOfRepeatCharacters * 2;
+		negValOfRepeatChars = -numOfRepeatCharacters * 3;
 
 		System.out.println("Negative value of repeat characters: " + negValOfRepeatChars);
 		System.out.println("Number of repeat Characters: " + numOfRepeatCharacters);
@@ -196,24 +197,28 @@ public class PasswordStrTester {
 			if (Character.isLetter(password.charAt(i)) && Character.isLowerCase(password.charAt(i))) {
 
 				charValue[i] = ((password.length() - occurNum[0]) * 2);
+				charValue[i] += (occurNum[0] * 4);
 
 				System.out.println("Character = " + password.charAt(i));
 				System.out.println("Value of the lowercase letters: " + charValue[i]);
 			} else if (Character.isLetter(password.charAt(i)) && Character.isUpperCase(password.charAt(i))) {
 
 				charValue[i] = ((password.length() - occurNum[1]) * 2);
+				charValue[i] += (occurNum[1] * 4);
 
 				System.out.println("Character = " + password.charAt(i));
 				System.out.println("Value of the uppercase letters: " + charValue[i]);
 			} else if (Character.isDigit(password.charAt(i))) {
 
 				charValue[i] = (occurNum[2] * 4);
+				charValue[i] += (occurNum[2] * 4);
 
 				System.out.println("Character = " + password.charAt(i));
 				System.out.println("Value of the digits: " + charValue[i]);
 			} else {
 
 				charValue[i] = (occurNum[3] * 6);
+				charValue[i] += (occurNum[3] * 4);
 
 				System.out.println("Character = " + password.charAt(i));
 				System.out.println("Value of the special characters: " + charValue[i]);
@@ -227,7 +232,6 @@ public class PasswordStrTester {
 		// Initializing the int to record the length of the Password String
 		// Prompting the user for the Password they would like to test - would
 		// like to make this a hidden text, further research needed
-		int stringLen = 0;
 
 		String password = JOptionPane.showInputDialog(null, "Enter the password you would like to test:",
 				JOptionPane.QUESTION_MESSAGE);
@@ -253,7 +257,7 @@ public class PasswordStrTester {
 		setTotalValue();
 
 		System.out.println();
-		System.out.println(totalVal);
+		System.out.println("Total Password Value: " + totalVal);
 
 		if (totalVal > 100) {
 			JOptionPane.showMessageDialog(null, "You have an excellent password.");
