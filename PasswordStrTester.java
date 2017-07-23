@@ -80,7 +80,7 @@ public class PasswordStrTester {
 		}
 
 		// Sets the Negative Value of the total number of repeat characters
-		negValOfRepeatChars = -numOfRepeatCharacters * 3;
+		negValOfRepeatChars = (-numOfRepeatCharacters * 2) * numOfRepeatCharacters;
 
 		System.out.println("Negative value of repeat characters: " + negValOfRepeatChars);
 		System.out.println("Number of repeat Characters: " + numOfRepeatCharacters);
