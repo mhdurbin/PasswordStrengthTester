@@ -26,21 +26,22 @@ public class PasswordStrTester {
 	static int stringLen = 0;
 	
 	// Calculates the number of Consecutive Uppercase Letters - There is a flaw in the logic, which is throwing off the count. Need to look into this more.
-//	public static void calcConsUpperLetters(String password) {
-//		int numOfRepeatUpperLetters = 0;
-//		for(int i = 0; i < password.length(); i++) {
-//			for(int j = i+1; j < password.length(); j++) {
-//				if(Character.isUpperCase(password.charAt(i)) && Character.isUpperCase(password.charAt(j))) {
-//					System.out.println("Character at i: " + password.charAt(i));
-//					System.out.println("Character at j: " + password.charAt(j));
-//					numOfRepeatUpperLetters += 1;
-//				}
-//			}
-//		}
-//		negValOfConsUpperLetters = -numOfRepeatUpperLetters*2;
-//		System.out.println("Negative value of consecutive Uppercase: " + negValOfConsUpperLetters);
-//		System.out.println("Number of consecutive Uppercase: " + numOfRepeatUpperLetters);
-//	}
+	public static void calcConsUpperLetters(String password) {
+		int numOfRepeatUpperLetters = 0;
+		for(int i = 0; i < password.length(); i++) {
+			int nextLetter = i+1;
+			if(nextLetter < password.length()) {
+				if(Character.isUpperCase(password.charAt(i)) && Character.isUpperCase(password.charAt(nextLetter))) {
+//					System.out.println("Character at i: " + password.charAt(i) + i);
+//					System.out.println("Character at nextLetter: " + password.charAt(nextLetter) + nextLetter);
+					numOfRepeatUpperLetters += 1;
+				}
+			}
+		}
+		negValOfConsUpperLetters = -numOfRepeatUpperLetters*2;
+		System.out.println("Negative value of consecutive Uppercase: " + negValOfConsUpperLetters);
+		System.out.println("Number of consecutive Uppercase: " + numOfRepeatUpperLetters);
+	}
 	
 	// Calculates the number of repeat Characters
 	public static void setRepeatCharactersValue(String password) {
@@ -168,7 +169,7 @@ public class PasswordStrTester {
 		// Calling on the method to calculate negative values from repeat
 		// characters and consecutive Uppercase letters
 		setRepeatCharactersValue(password);
-		// calcConsUpperLetters(password);
+		calcConsUpperLetters(password);
 
 	}
 
