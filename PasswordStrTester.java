@@ -23,10 +23,29 @@ public class PasswordStrTester {
 	static int negOccurNum[] = new int[2];
 	static int negValOfRepeatChars = 0;
 	static int negValOfConsUpperLetters = 0;
+	static int negValOfConsLowerLetters = 0;
 	static int stringLen = 0;
 	
-	// Calculates the number of Consecutive Uppercase Letters - There is a flaw in the logic, which is throwing off the count. Need to look into this more.
-	public static void calcConsUpperLetters(String password) {
+	// Calculates the number of Consecutive Lowercase Letters
+	public static void setConsLowerLetters(String password) {
+		int numOfRepeatLowerLetters = 0;
+		for(int i = 0; i < password.length(); i++) {
+			int nextLetter = i+1;
+			if(nextLetter < password.length()) {
+				if(Character.isLowerCase(password.charAt(i)) && Character.isLowerCase(password.charAt(nextLetter))) {
+//					System.out.println("Character at i: " + password.charAt(i) + i);
+//					System.out.println("Character at nextLetter: " + password.charAt(nextLetter) + nextLetter);
+					numOfRepeatLowerLetters += 1;
+				}
+			}
+		}
+		negValOfConsLowerLetters = (-numOfRepeatLowerLetters*2) * numOfRepeatLowerLetters;
+		System.out.println("Negative value of consecutive Lowercase: " + negValOfConsLowerLetters);
+		System.out.println("Number of consecutive Lowercase: " + numOfRepeatLowerLetters);
+	}
+	
+	// Calculates the number of Consecutive Uppercase Letters
+	public static void setConsUpperLetters(String password) {
 		int numOfRepeatUpperLetters = 0;
 		for(int i = 0; i < password.length(); i++) {
 			int nextLetter = i+1;
@@ -38,7 +57,7 @@ public class PasswordStrTester {
 				}
 			}
 		}
-		negValOfConsUpperLetters = -numOfRepeatUpperLetters*2;
+		negValOfConsUpperLetters = (-numOfRepeatUpperLetters*2) * numOfRepeatUpperLetters;
 		System.out.println("Negative value of consecutive Uppercase: " + negValOfConsUpperLetters);
 		System.out.println("Number of consecutive Uppercase: " + numOfRepeatUpperLetters);
 	}
@@ -128,6 +147,7 @@ public class PasswordStrTester {
 		// Uppercase letters, occurence
 		totalNegVal += negValOfRepeatChars;
 		totalNegVal += negValOfConsUpperLetters;
+		totalNegVal += negValOfConsLowerLetters;
 
 		System.out.println();
 		System.out.println("Total Negative Value: " + totalNegVal);
@@ -169,7 +189,8 @@ public class PasswordStrTester {
 		// Calling on the method to calculate negative values from repeat
 		// characters and consecutive Uppercase letters
 		setRepeatCharactersValue(password);
-		calcConsUpperLetters(password);
+		setConsUpperLetters(password);
+		setConsLowerLetters(password);
 
 	}
 
