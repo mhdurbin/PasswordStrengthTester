@@ -1,3 +1,4 @@
+//Investigate what the package does
 package PasswordStrengthTester;
 
 import java.util.HashMap;
